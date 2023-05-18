@@ -1,5 +1,15 @@
 $(document).ready(function() {
-    // Submit event handler for the form
+ // Disable copying and pasting for the entire document
+document.addEventListener("copy", function(event) {
+  event.preventDefault();
+});
+
+document.addEventListener("paste", function(event) {
+  var activeElement = document.activeElement;
+  if (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA") {
+    event.preventDefault();
+  }
+});
      
 $('#payslip_frm').on('submit',function(event) {
   event.preventDefault();
