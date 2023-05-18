@@ -1,4 +1,10 @@
-#loader-overlay {
+@font-face {
+  font-family: 'Cabin'; 
+  src: url('./fonts/Cabin/Cabin-VariableFont_wdth,wght.ttf ') format('truetype');
+  /* Add additional src lines for other font formats, such as woff, woff2, etc., if available */
+}
+
+ #loader-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -38,8 +44,10 @@
     color: #5010d1!important;
 }
 body{
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    background: #e4dafa;
+  font-family: 'Cabin', sans-serif;
+  background: #e4dafa;
+  font-weight:  400px;
+  font-size:16px;
   }
 
   img{
@@ -65,8 +73,7 @@ outline: none !important;
 display: none;
 }
 .table tr {
-    line-height: 5px;
-    font-size: 12px;
+     font-size: 12px;
     font-family: 'Courier New', monospace;
     
   }

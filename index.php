@@ -22,7 +22,7 @@
 
          <h3 >Payroll Calculator</h3>
  </div>
-     <div class="col-md-5">
+     <div class="col-md-6 ">
       <h5 class="text-center">Enter Payroll Data</h5>
     <hr>
      <form method="post" id="payslip_frm" autocomplete="off">
@@ -119,14 +119,19 @@
 </div>
 <!-- /.col -->
 
-<div class="col-md-7">
-  <div id="page_info">
-    <img src="assets/img/istockphoto-1389726884-612x612.jpg" alt="">
+<div class="col-md-6  ">
+  <!-- <div class="row"> -->
+    <div class="col-md-12" id="page_info">
+    <img width="98%" class="mx-auto" src="assets/img/istockphoto-1389726884-612x612.jpg" alt="">
      <p>This calculator works out an employee's net pay by subtracting PAYE, NSSF, NHIF and pension fund contribution from the monthly gross pay. In order to work out taxable pay, the calculator requires non-cash benefits and any allowable deductions other than NSSF and pension fund contribution.</p>
   <p>The calculator uses the latests PAYE, NHIF, NSSF values to calculate the net-pay and present it in a simple payslip as it could look in in a typical payroll.</p>
 <h4>PAYE Calculator</h4>
 <p>Pay As You Earn (PAYE) is a mandatory tax deduction done on any earnings.   </p>
 </div>
+<!-- </div> -->
+
+  
+  
  
 <div id="payslip_info" >
   <div id="mypayslip" class="">
