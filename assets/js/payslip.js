@@ -61,6 +61,7 @@ function formatNumber(number) {
   }
 
 }
+$('#page_info').hide();
 $('#payslip_info').show(); 
 $('#payslip-month').text(`Payslip for the month of ${payMonth}`) ;
 $('#employee-name').text(employeeName) ;

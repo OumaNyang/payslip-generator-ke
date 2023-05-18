@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Payroll Software</title>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SIGNAL</title>
+<meta name="description" content="The calculator uses the latests PAYE, NHIF, NSSF values to calculate the net-pay and present it in a simple payslip as it could look in in a typical payroll.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="./assets/css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- 
 </head>
 <body>    <div  class="container mt-2 mb-2">
 
     <div style="background: #fff;" class="row  ">
-      <div class="col-12 text-center bg-success text-light p-2"> 
+      <div   class="col-12 text-center bg-theme text-light p-2"> 
 
-         <h4 >Payslip Generator Kenya</h4>
+         <h3 >Payslip Calculator</h3>
  </div>
      <div class="col-md-5">
+      <h5 class="text-center">Calculate Payslip</h5>
+    <hr>
      <form method="post" id="payslip_frm" autocomplete="off">
   <div class="form no-gutters">
     <div class="col-md-12 form-group row mt-2">
@@ -103,18 +106,23 @@
   </div>
 </form>
 
-<div class="col-md-12 text-center">
-  <p>Developed by <a target="_blank" href="https://oumanyang.com">Nyang Digital iHub</a></p>
+<div style="background: #defde8;color:#000;font-weight:700"class="col-md-12 text-center p-2 mt-5">
+  <p>Are you in need of a Payroll Software? <a target="_blank"  class="text-theme" href="https://oumanyang.com/contact-us"> Contact us </a> on +254 780104232 | developer@oumanyang.com</p>
   </div>
+
 
 </div>
 <!-- /.col -->
 
 <div class="col-md-7">
-  <p>This calculator works out an employee's net pay by subtracting PAYE, NSSF, NHIF and pension fund contribution from the monthly gross pay. In order to work out taxable pay, the calculator requires non-cash benefits and any allowable deductions other than NSSF and pension fund contribution.</p>
+  <div id="page_info">
+    <img src="assets/img/istockphoto-1389726884-612x612.jpg" alt="">
+     <p>This calculator works out an employee's net pay by subtracting PAYE, NSSF, NHIF and pension fund contribution from the monthly gross pay. In order to work out taxable pay, the calculator requires non-cash benefits and any allowable deductions other than NSSF and pension fund contribution.</p>
   <p>The calculator uses the latests PAYE, NHIF, NSSF values to calculate the net-pay and present it in a simple payslip as it could look in in a typical payroll.</p>
 <h4>PAYE Calculator</h4>
 <p>Pay As You Earn (PAYE) is a mandatory tax deduction done on any earnings.   </p>
+</div>
+ 
 <div id="payslip_info" >
   <div id="mypayslip" class="">
     <div class="row justify-content-center mt-1">
@@ -262,17 +270,18 @@
         <p class="text-bold" > Created on <span id="createddate"></span></p>
       </small>
 
-      <button id="print_payslip" class="btn btn-block btn-dark ">Print Payslip</button>
-    </div>
-
-  </div>
-</div>
-
-</div>
+     </div>
   </div>
 </div>
 </div>
-  
+</div>
+
+<div class="col-md-12 text-center bg-theme p2">
+  <p>Developed by <a target="_blank" href="https://oumanyang.com">Nyang Digital iHub</a></p>
+  </div>
+</div>
+</div>
+
 
 <!-- JavaScript files -->
 <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
