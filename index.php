@@ -1,7 +1,3 @@
-<?php
-$homebase_url = 'http://localhost/harare/signal-2/';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,134 +5,121 @@ $homebase_url = 'http://localhost/harare/signal-2/';
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>SIGNAL</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-
-  <style>
-.table tr {
-      line-height: 5px;
-      font-size: 12px;
-      font-family: 'Courier New', monospace;
-      
-    }
-
-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-#pinfo_tbl1,#pinfo_tbl2 {
-      font-size: 13px;
-      line-height: 5px;
-      position: relative;
-    }
-    #bio_tbl{
-        position: relative;
-
-    }
-
-    #payslip_tbl {
-      position: relative;
-      z-index: 1;
-      color:#000;
-      font-weight:600;
-    }
-
-
-    #payslip_tbl:before {
-        content: " "; 
-      background-image: url("./assets/img/dscf75b78hf-removebg-preview.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      position: absolute;
-       left: 100;
-       right: 100;
-      width: 100%;
-      /* height: 500px; */
-      opacity: .05;
-    }
-  </style>
+<link rel="stylesheet" href="./assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
 </head>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-    <div class="card">
-    <div class="card-header">
-    Payroll
-    </div>
-   <div class="card-body">
-   <div class="row justify-content-center">
+<body>    <div  class="container mt-2 mb-2">
+
+    <div style="background: #fff;" class="row  ">
+      <div class="col-12 text-center bg-success text-light p-2"> 
+
+         <h4 >Payslip Generator Kenya</h4>
+ </div>
      <div class="col-md-5">
-        <form method="post" id ="payslip_frm"  autocomplete="off">
-        <div class="form no-gutters">
-        <div class="col-md-12 form-group">
-        <label class="control-label rounded-0">Month :</label>
-        <input required type="month"  value="<?=date('Y-m')  ?>"  class="form-control bg-white rounded-0"  id="paymonth" name="paymonth" >
-        </div>
+     <form method="post" id="payslip_frm" autocomplete="off">
+  <div class="form no-gutters">
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label rounded-0">Month:</label>
+      <div class="col-md-7">
+        <input required type="month" value="<?= date('Y-m', strtotime(date('Y-m'))) ?>" max="<?= date('Y-m', strtotime(date('Y-m'))) ?>" class="form-control rounded-0" id="paymonth" name="paymonth">
+      </div>
+    </div>
 
-        <div class="col-md-12  form-group">
-        <label class="control-label">Name :</label>
-        <input required type="text"  min="5" value="Jakaya Kikwete"  class="form-control bg-white rounded-0" id="empname" name="empname" >
-        </div>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label">Name:</label>
+      <div class="col-md-7">
+        <input required type="text" min="5" value="Jakaya Kikwete" class="form-control rounded-0" id="empname" name="empname">
+      </div>
+    </div>
 
-        <div class="col-md-12   form-group">
-        <label class="control-label">Department :</label>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label">Department:</label>
+      <div class="col-md-7">
+        <input required type="text" class="form-control rounded-0" value="sales" id="department" name="department">
+      </div>
+    </div>
 
-        <input required type="text"    class="form-control bg-white rounded-0" value="sales" id="department" name="department" >
-        </div>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label">Basic Salary:</label>
+      <div class="col-md-7">
+        <input required type="number" min="1" value="250000" class="form-control rounded-0" id="basicpay" name="basicpay">
+      </div>
+    </div>
 
-        <div class="col-md-12  form-group">
-        <label class="control-label">Basic Salary :</label>
-        <input required type="number"  min="1"  value="892000" class="form-control bg-white rounded-0" id="basicpay"  name="basicpay" >
-        </div>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label" for="actionnotes">Allowances:</label>
+      <div class="col-md-7">
+        <input type="number" value="0" min="0" class="form-control rounded-0" id="allowances" name="allowances">
+      </div>
+    </div>
 
-        <div class="col-md-12  form-group">
-        <label class="control-label" for="actionnotes">Allowancess:</label>
-        <input  type="number"  value="0" min="0" class="form-control bg-white rounded-0" id="allowances" name="allowances" >
-        </div>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label" for="actionnotes">Overtime:</label>
+      <div class="col-md-7">
+        <input type="number" value="0" min="0" class="form-control rounded-0" id="overtime" name="overtime">
+      </div>
+    </div>
 
-        <div class="col-md-12  form-group">
-        <label class="control-label" for="actionnotes">Overtime:</label>
-        <input  type="number"  value="0" min="0" class="form-control bg-white rounded-0" id="overtime" name="overtime" >
-        </div>
-
-        <div class="col-md-12  form-group">
-        <label class="control-label rounded-0" for="actionnotes">NSSF :</label>
-        <select required class="form-control bg-white rounded-0" id="nssrates" name="nssfrates" >
-         <option value="oldnssf">Old NSSF rates</option>
-        <option value="newnssf">New NSSF Rates</option>
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label rounded-0" for="actionnotes">NSSF:</label>
+      <div class="col-md-7">
+        <select required class="form-control rounded-0" id="nssrates" name="nssfrates">
+          <option value="oldnssf">Old NSSF rates</option>
+          <option value="newnssf">New NSSF Rates</option>
         </select>
-        </div>
+      </div>
+    </div>
 
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label" for="actionnotes rounded-0">Deductions:</label>
+      <div class="col-md-7">
+        <input type="number" value="0" min="0" class="form-control rounded-0" id="deductions" name="deductions">
+      </div>
+    </div>
 
-        <div class="col-md-12  form-group">
-        <label class="control-label" for="actionnotes rounded-0">Deductions:</label>
-
-        <input  type="number"  value="0" min="0" class="form-control bg-white rounded-0" id="deductions" name="deductions" >
-        </div>
-
-        <div class="col-md-12 p-0 form-group">
-        <label class="control-label" for="actionnotes">Deduct HELB:</label>
-        <select required class="form-control bg-white" id="deducthelb" name="deducthelb" >
-        <option value="donotpay">NO</option>
-        <option value="pay">YES</option>
-
+    <div class="col-md-12 form-group row mt-2">
+      <label class="col-md-5 control-label" for="actionnotes">Deduct HELB:</label>
+      <div class="col-md-7">
+        <select required class="form-control rounded-0" id="deducthelb" name="deducthelb">
+          <option value="donotpay">NO</option>
+          <option value="pay">YES</option>
         </select>
+      </div>
+    </div>
+    <div class="col-md-12 form-group row mt-2 ">
+      <label class="col-md-5 control-label" for="actionnotes">Deduct Housing Levy (3% of Taxable income):</label>
+      <div class="col-md-7">
+        <select required class="form-control rounded-0" id="deducthousing" name="deducthousing">
+          <option value="donotpay">NO</option>
+          <option value="pay">YES</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12 form-group   m-2">
+         <button type="submit" class="btn btn-block btn-primary rounded-0" id="get_payslip" name="get_payslip"><i class="bi bi-check-circle"></i>&nbsp;Generate Payslip</button>
+     </div>
 
-        </div>
-        <button  type="submit"  class="btn btn-md btn-round btn-primary mt-5" id="get_payslip"  name="get_payslip" ><i class="bi bi-check-circle"></i>&nbsp;Generate Payslip
-        </button>
-        </div>
-        </form>
+  </div>
+</form>
 
+<div class="col-md-12 text-center">
+  <p>Developed by <a target="_blank" href="https://oumanyang.com">Nyang Digital iHub</a></p>
+  </div>
 
 </div>
 <!-- /.col -->
 
-
-<div class="col-md-5">
+<div class="col-md-7">
+  <p>This calculator works out an employee's net pay by subtracting PAYE, NSSF, NHIF and pension fund contribution from the monthly gross pay. In order to work out taxable pay, the calculator requires non-cash benefits and any allowable deductions other than NSSF and pension fund contribution.</p>
+  <p>The calculator uses the latests PAYE, NHIF, NSSF values to calculate the net-pay and present it in a simple payslip as it could look in in a typical payroll.</p>
+<h4>PAYE Calculator</h4>
+<p>Pay As You Earn (PAYE) is a mandatory tax deduction done on any earnings.   </p>
+<div id="payslip_info" >
   <div id="mypayslip" class="">
     <div class="row justify-content-center mt-1">
       <div class="col-md-8">
-        <!-- <img class="" width="30%" src="./dscf75b78hf-removebg-preview.png" alt=""> -->
+        <!-- <img class="" width="30%" src="./assets/img/dscf75b78hf-removebg-preview.png" alt=""> -->
         <hr>
         <h6 class="text-center text-bold" id="payslip-month"></h6>
       </div>
@@ -195,6 +178,10 @@ table tr:nth-child(even) {
       <td class="text-bold" id="insurance_relief"></td>
     </tr>
     <tr>
+      <td>Housing Levy</td>
+      <td class="text-bold" id="housing_levy"></td>
+    </tr>
+    <tr>
       <td>P.A.Y.E</td>
       <td class="text-bold" id="paye"></td>
     </tr>
@@ -212,11 +199,11 @@ table tr:nth-child(even) {
     </tr>
     <tr>
       <td>Deductions</td>
-      <td class="text-bold" id="deductions"></td>
+      <td class="text-bold" id="total_deductions"></td>
     </tr>
-    <tr class="bg-primary  ">
+    <tr class="bg-dark  text-light">
       <td>Net Pay</td>
-      <td class="text-bold text-light" id="netpay"></td>
+      <td class="text-light" id="netpay"></td>
     </tr>
   </table>
   
@@ -274,18 +261,18 @@ table tr:nth-child(even) {
       <small>
         <p class="text-bold" > Created on <span id="createddate"></span></p>
       </small>
+
+      <button id="print_payslip" class="btn btn-block btn-dark ">Print Payslip</button>
     </div>
 
   </div>
 </div>
 
 </div>
+  </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+  
 
 <!-- JavaScript files -->
 <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>

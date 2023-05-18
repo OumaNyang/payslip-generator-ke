@@ -1,16 +1,18 @@
 $(document).ready(function() {
     // Submit event handler for the form
-
+     
 $('#payslip_frm').on('submit',function(event) {
   event.preventDefault();
 const basicPay = parseFloat($('#basicpay').val());
 const allowances = parseFloat($('#allowances').val());
 const payMonth = $('#paymonth').val();
 const overtime = parseFloat($('#overtime').val());
-const deductions = parseFloat($('#deductions').val());
+const otherDeductions = parseFloat($('#deductions').val());
 const deductHelb = $('#deducthelb').val();
 const nssfRates = $('#nssfrates').val();
 const department = $('#department').val();
+const deducthousing = $('#deducthousing').val();
+
 const employeeName = $('#empname').val();
 const empNumber = Math.floor(Math.random() * 100000) + 990000;
 const insuranceRelief = -255;
@@ -30,6 +32,7 @@ const taxablePay = basicPay + overtime + allowances - nssf;
 let incomeTax = 0;
 let personalRelief = -2400;
 let paye = 0;
+const housingLevy   = deducthousing ===  'pay' ? 0.03 *basicPay : 0;
 
   if (taxablePay > 24000 && taxablePay <= 32333) {
     const tier1 = 0.1 * 24000;
@@ -47,12 +50,9 @@ let paye = 0;
   }
 
   const payAfterTax = taxablePay - paye;
-  const netPay = payAfterTax - nhif - helb - deductions;
-  document.getElementById('payslip-month').textContent = `Payslip for the month of ${payMonth}`;
-  document.getElementById('employee-name').textContent = employeeName;
-  document.getElementById('employee-number').textContent = empNumber;
-  document.getElementById('employee-department').textContent = department;
- 
+  const netPay = payAfterTax - nhif - helb - housingLevy- otherDeductions;
+  const totalDeductions = nhif + helb + paye + nssf+ housingLevy + otherDeductions;
+
 function formatNumber(number) {
   if (typeof number === 'number') {
     return number.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -61,47 +61,52 @@ function formatNumber(number) {
   }
 
 }
+$('#payslip_info').show(); 
+$('#payslip-month').text(`Payslip for the month of ${payMonth}`) ;
+$('#employee-name').text(employeeName) ;
+$('#employee-number').text(empNumber) ;
+$('#employee-department').text(department);
 
-document.getElementById('basic_pay').textContent = formatNumber(basicPay);
-document.getElementById('overtime_amnt').textContent = formatNumber(overtime);
-document.getElementById('allowances_amnt').textContent = formatNumber(allowances);
-document.getElementById('hosp_mortgage').textContent = formatNumber(hosp_mortgage);
-document.getElementById('nssf').textContent = formatNumber(nssf);
-document.getElementById('taxable_pay').textContent = formatNumber(taxablePay);
-document.getElementById('income_tax').textContent = formatNumber(incomeTax);
-document.getElementById('personal_relief').textContent = formatNumber(personalRelief);
-document.getElementById('insurance_relief').textContent = formatNumber(insuranceRelief);
-document.getElementById('paye').textContent = formatNumber(paye);
-document.getElementById('pay_after_tax').textContent = formatNumber(payAfterTax);
-document.getElementById('nhif').textContent = formatNumber(nhif);
-document.getElementById('helb').textContent = formatNumber(helb);
-document.getElementById('deductions').textContent = formatNumber(deductions);
-document.getElementById('netpay').textContent = formatNumber(netPay);
-
+$('#basic_pay').text(formatNumber(basicPay));
+$('#overtime_amnt').text(formatNumber(overtime));
+$('#allowances_amnt').text(formatNumber(allowances));
+$('#hosp_mortgage').text(formatNumber(hosp_mortgage));
+$('#nssf').text(formatNumber(nssf));
+$('#taxable_pay').text(formatNumber(taxablePay));
+$('#income_tax').text(formatNumber(incomeTax));
+$('#personal_relief').text(formatNumber(personalRelief));
+$('#insurance_relief').text(formatNumber(insuranceRelief));
+$('#paye').text(formatNumber(paye));
+$('#pay_after_tax').text(formatNumber(payAfterTax));
+$('#nhif').text(formatNumber(nhif));
+$('#helb').text(formatNumber(helb));
+$('#deductions').text(formatNumber(deductions));
+$('#netpay').text(formatNumber(netPay));
+$('#housing_levy').text(formatNumber(housingLevy));total_deductions;
+$('#total_deductions').text(formatNumber(totalDeductions));
 // Update personal info table
-document.getElementById('paymentmode').textContent = paymentMode;
-document.getElementById('bankname').textContent = bankName;
-document.getElementById('bankbranch').textContent = bankBranch;
-document.getElementById('bankaccno').textContent = bankAccNo;
-document.getElementById('natidno').textContent = natIdNo;
-document.getElementById('pinno').textContent = pinNo;
-document.getElementById('nhifno').textContent = nhifNo;
-document.getElementById('nssfno').textContent = nssfNo;
+$('#paymentmode').text(paymentMode);
+$('#bankname').text(bankName);
+$('#bankbranch').text(bankBranch);
+$('#bankaccno').text(bankAccNo);
+$('#natidno').text(natIdNo);
+$('#pinno').text(pinNo);
+$('#nhifno').text(nhifNo);
+$('#nssfno').text(nssfNo);
 
-// Generate barcode using a library or custom implementation
-
+  
 // Display the created date
 // window.history.replaceState( null, null, window.location.href );
 
 const currentDate = new Date();
 const createdDate = currentDate.toLocaleDateString();
-// document.getElementById('createddate').textContent = `Created ${createdDate}`;
+$('#createddate').text(` ${createdDate}`) ;
 
 var today = new Date();
 var dt = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-var element = document.getElementById('mypayslip');
+var element = $('mypayslip');
 var opt = {
   margin:       [0,1],
   filename:     'payslip-'+dt+'-'+time+'.pdf',
