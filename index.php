@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Payroll Software</title>
+<title>Payroll Software | HRMS</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,12 +13,12 @@
 <body>    <div  class="container mt-2 mb-2">
 
     <div style="background: #fff;" class="row  ">
-      <div   class="col-12 text-center bg-theme text-light p-2"> 
+      <div   class="col-12 text-center bg-theme text-light p-2 "> 
 
-         <h3 >Payslip Calculator</h3>
+         <h3 >Payroll Calculator</h3>
  </div>
      <div class="col-md-5">
-      <h5 class="text-center">Calculate Payslip</h5>
+      <h5 class="text-center">Enter Payroll Data</h5>
     <hr>
      <form method="post" id="payslip_frm" autocomplete="off">
   <div class="form no-gutters">
@@ -32,14 +32,14 @@
     <div class="col-md-12 form-group row mt-2">
       <label class="col-md-5 control-label">Name:</label>
       <div class="col-md-7">
-        <input required type="text" min="5" value="Jakaya Kikwete" class="form-control rounded-0" id="empname" name="empname">
+        <input required type="text" min="5" value="Ouma Nyang" class="form-control rounded-0" id="empname" name="empname">
       </div>
     </div>
 
     <div class="col-md-12 form-group row mt-2">
       <label class="col-md-5 control-label">Department:</label>
       <div class="col-md-7">
-        <input required type="text" class="form-control rounded-0" value="sales" id="department" name="department">
+        <input required type="text" class="form-control rounded-0" value="Software Solutions Development" id="department" name="department">
       </div>
     </div>
 
@@ -60,7 +60,7 @@
     <div class="col-md-12 form-group row mt-2">
       <label class="col-md-5 control-label" for="actionnotes">Overtime:</label>
       <div class="col-md-7">
-        <input type="number" value="0" min="0" class="form-control rounded-0" id="overtime" name="overtime">
+        <input type="number" value="12000" min="0" class="form-control rounded-0" id="overtime" name="overtime">
       </div>
     </div>
 
