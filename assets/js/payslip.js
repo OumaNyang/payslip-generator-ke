@@ -1,5 +1,6 @@
 $(document).ready(function() {
  // Disable copying and pasting for the entire document
+ $('#loader-overlay').hide();
 document.addEventListener("copy", function(event) {
   event.preventDefault();
 });
@@ -13,6 +14,7 @@ document.addEventListener("paste", function(event) {
      
 $('#payslip_frm').on('submit',function(event) {
   event.preventDefault();
+  $('#loader-overlay').show();
 const basicPay = parseFloat($('#basicpay').val());
 const allowances = parseFloat($('#allowances').val());
 const payMonth = $('#paymonth').val();
@@ -71,6 +73,7 @@ function formatNumber(number) {
   }
 
 }
+$('#loader-overlay').hide();
 $('#page_info').hide();
 $('#payslip_info').show(); 
 $('#payslip-month').text(`Payslip for the month of ${payMonth}`) ;

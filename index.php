@@ -10,7 +10,12 @@
 <link rel="stylesheet" href="./assets/css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>    <div  class="container mt-2 mb-2">
+<body> 
+<div id="loader-overlay">
+  <div class="loader"></div>
+</div>
+
+<div  class="container mt-2 mb-2">
 
     <div style="background: #fff;" class="row  ">
       <div   class="col-12 text-center bg-theme text-light p-2 "> 
@@ -39,7 +44,7 @@
     <div class="col-md-12 form-group row mt-2">
       <label class="col-md-5 control-label">Department:</label>
       <div class="col-md-7">
-        <input required type="text" class="form-control rounded-0" value="Software Solutions Development" id="department" name="department">
+        <input required type="text" class="form-control rounded-0" value="Software Solutions" id="department" name="department">
       </div>
     </div>
 
